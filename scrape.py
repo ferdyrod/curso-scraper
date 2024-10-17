@@ -17,7 +17,7 @@ def send_telegram_message(text):
 
 
 def scrape_data():
-    default_string = 'En estos momentos no hay fechas disponibles'
+    default_string = ' En estos momentos no hay fechas disponibles'
     try:
         response = requests.get(url, timeout=60)
         soup = BeautifulSoup(response.content, 'html.parser')
