@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-url = "https://arcomoratalaz.com/cursos-de-iniciacion/"
+url = os.environ.get('URL')
 
 def send_telegram_message(text):
     
@@ -25,7 +25,7 @@ def scrape_data():
         content = soup.find_all(string=default_string)
 
         if not content:
-            caption = "HAY FECHA ABIERTAS PARA CURSO DE TIRO CON ARCO"
+            caption = f"HAY FECHA ABIERTAS PARA CURSO DE TIRO CON ARCO.\n Entra ya a {url}"
             send_telegram_message(text=caption)
 
     # Handle exceptions and pause before retrying
