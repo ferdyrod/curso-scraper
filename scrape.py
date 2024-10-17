@@ -6,7 +6,7 @@ url = os.environ.get('URL')
 
 def send_telegram_message(text):
     
-    url = f"https://api.telegram.org/bot{os.environ.get('TOKEN')}/sendMessage"
+    url = f"https://api.telegram.org/bot{os.environ.get('TELEGRAM_TOKEN')}/sendMessage"
     payload = {
         'chat_id': os.environ.get('CHAT_ID'),
         'text': text,
@@ -25,8 +25,10 @@ def scrape_data():
         content = soup.find_all(string=default_string)
 
         if not content:
-            caption = f"HAY FECHA ABIERTAS PARA CURSO DE TIRO CON ARCO.\n Entra ya a {url}"
+            caption = f"HAY FECHA ABIERTAS PARA EL CURSO DE TIRO CON ARCO.\n Entra ya aqui --> {url}"
             send_telegram_message(text=caption)
+        else:
+            print("No hay fechas")
 
     # Handle exceptions and pause before retrying
     except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
