@@ -1,8 +1,10 @@
 name: run scrape.py
 
 on: 
-  schedule:
-    - cron: '0 9 * * *'
+  push:
+    branches: 
+      - main
+      - develop
 
 jobs:
   build:
