@@ -18,11 +18,13 @@ def send_telegram_message(text):
 
 def scrape_data():
     default_string = ' En estos momentos no hay fechas disponibles'
+    
     try:
         response = requests.get(url, timeout=60)
         soup = BeautifulSoup(response.content, 'html.parser')
     
         content = soup.find_all(string=default_string)
+        content.append(soup.find_all('h4'))
 
         if not content:
             caption = f"HAY FECHA ABIERTAS PARA EL CURSO DE TIRO CON ARCO.\n Entra ya aqui --> {url}"
